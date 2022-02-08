@@ -11,11 +11,35 @@ GROUP BY
 HAVING
 	COUNT(LAST_NAME) = 1
 ORDER BY
-	LAST_NAME ASC;
+	LAST_NAME ASC;  
+# Works because of the Having condition, otherwise, would be losing rows
     
+SELECT
+	LAST_NAME, COUNT(LAST_NAME) 
+FROM
+	ACTOR
+GROUP BY
+	LAST_NAME
+HAVING
+	COUNT(LAST_NAME) = 1
+ORDER BY
+	LAST_NAME ASC;
+  
 # 2. Which last names appear more than once? We would use the same logic as in the previous question but this time we want to include the last names of the actors where the last name was present more than once
 SELECT
 	*, COUNT(LAST_NAME) AS Name_occurence
+FROM
+	ACTOR
+GROUP BY
+	LAST_NAME
+HAVING
+	COUNT(LAST_NAME) > 1
+ORDER BY
+	COUNT(LAST_NAME) DESC;
+# Works because of the Having condition, otherwise, would be losing rows
+    
+SELECT
+	LAST_NAME, COUNT(LAST_NAME) AS Name_occurence
 FROM
 	ACTOR
 GROUP BY
